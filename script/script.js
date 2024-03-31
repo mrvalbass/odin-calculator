@@ -55,15 +55,13 @@ function calculator(e) {
       displayValue += ' ' + btn + ' '; 
       break;
 
-    case '.':
-      if (/\./.test(displayValue)) break;
-
     case 'Backspace':
     case 'back' :
       if (displayValue.at(-1) === ' ') displayValue = displayValue.slice(0,-3);
       else displayValue = displayValue.slice(0,-1);
       break;
 
+    case '.': if (/\./.test(displayValue)) break;
     case '0':
     case '1':
     case '2':
