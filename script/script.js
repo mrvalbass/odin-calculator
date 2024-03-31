@@ -32,7 +32,7 @@ let displayValue = '';
 function calculate() {
   const operationArray = displayValue.split(' ')
   if (operationArray.length !== 3 || operationArray.includes('')) return
-  displayValue = round(operate(...displayValue.split(' ')),4)
+  displayValue = `${round(operate(...displayValue.split(' ')),4)}`
 }
 
 function round(num, nbOfDigits) {
