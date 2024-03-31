@@ -15,7 +15,7 @@ function operate (operand1, operator, operand2) {
   if (operator === '-') return subtract(operand1, operand2);
   if (operator === '*') return multiply(operand1, operand2);
   if (operator === '/') {
-    if (operand2 === '0') {
+    if (!+operand2) {
       alert('No division by 0');
       return ''
     }
@@ -30,7 +30,8 @@ const display = container.querySelector('#display > p')
 let displayValue = '';
 
 function calculate() {
-  if (displayValue.split(' ').length !== 3) return
+  const operationArray = displayValue.split(' ')
+  if (operationArray.length !== 3 || operationArray.includes('')) return
   displayValue = round(operate(...displayValue.split(' ')),4)
 }
 
@@ -52,7 +53,9 @@ function calculator(e) {
     case '*':
     case '/': 
       if (/[\+\-\*\/]/.test(displayValue)) calculate();
-      displayValue += ' ' + btn + ' '; 
+      if (displayValue.length && displayValue.at(-1) !== ' ') {
+        displayValue += ' ' + btn + ' '; 
+      }
       break;
 
     case 'Backspace':
